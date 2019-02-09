@@ -1,43 +1,68 @@
 #include<iostream>
 using namespace std;
 
-void enqueue(int queue[],int& first,int& last,int value)
+class QueueArr
 {
- if(first==last)
- cout<<"queue overflow"<<endl;
- else
- {
-  last++;
-  queue[last]=value;
- }
-}
-void dequeue(int queue[],int& first,int& last)
-{
- if(first==last)
- cout<<"stack underflow";
- else
- {
-  cout<<queue[first]<<":deleted"<<endl;
-  first--;
- }
-}
+ int queue[10];
+ int front;
+ int tail;
+ public: QueueArr()
+        {
+         //Intialize the elements
+         tail=front=-1;
+         for(int i=0;i<10;i++)
+          queue[i]=0;
+        }
+       
+        void dequeue()
+        { //check if the queue is non empty
+          if(front!=tail&&front>=0)
+         {//delete the top most element
+          cout<<"Deleting:"<<queue[front]<<endl;
+          front++;
+         }
+         else
+         cout<<"Queue underflow"<<endl;//else display error message
+        }
+       
+        void enqueue(int value)
+        {int size=sizeof(queue)/sizeof(queue[0]);
+         if(front==-1)
+         {
+          front=tail=0;
+          queue[front]=value;
+         }
+         if(tail<size)
+         {
+          queue[tail]=value;
+          tail++;
+         }
+        }
 
-void display(int queue[],int& front,int& end)
-{
- for(int i=front;i<end;i++)
- cout<<" "<<queue[i]<<" ";
- cout<<endl;
-}
+        void display()
+         {
+          for(int i=front;i<tail;i++)
+          cout<<queue[i]<<" ";//Display queue elements
+          cout<<endl;
+
+         }
+       
+};
+
+
 int main()
 {
- int arr[10];
- int front=-1,end=-1;
- for(int i=0;i<10;i++)
- enqueue(arr,front,end,2*i+1);
- display(arr,front,end);
- for(int i=0;i<10;i++)
- {
- 	dequeue(arr,front,end);
- }	
- 
+QueueArr s;
+s.enqueue(1);
+s.display();
+s.enqueue(2);
+s.display();
+s.dequeue();
+s.display();
+s.dequeue();
+s.display();
+s.dequeue();
+s.display();
+
 }
+
