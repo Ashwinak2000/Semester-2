@@ -1,68 +1,77 @@
 #include<iostream>
 using namespace std;
-
-//implements a queue from a stack
-class stackArr
-{ public:
- int stack[10];
- int top;
- stackArr()
-        {
-         //Intialize the elements
-         top=-1;
-         for(int i=0;i<10;i++)
-          stack[i]=0;
-        }
-       
-        int pop()
-        { //check if the stack is non empty
-          int t;
-          if(top>-1)
-         {//delete the top most element and return it
-          t=stack[top];
-          //cout<<"Deleting:"<<stack[top]<<endl;
-          top--;
-          return t;
-         }
-         else
-         cout<<"Stack underflow"<<endl;//else display error message
-        }
-       
-        void push(int value)
-        {
-         int size=sizeof(stack)/sizeof(stack[0]);
-         //check if stack is full(overflowing)
-          if(top>size)
-          cout<<"Stack Overflow"<<endl;//If yes display error
-          else
-         {
-          top++;
-          stack[top]=value; //Else add a new element
-         }
-        }
-
-        void display()
-         {
-          for(int i=top;i>=0;i--)
-          cout<<stack[i]<<" ";//Display stack elements
-          cout<<endl;
-
-         }
-       
+// A linked list (LL) node to store a stack entry 
+class node 
+{ 
+    public:
+	int data; 
+	node *next; 
+	node()
+	{
+		data=0;
+		next=NULL;
+	}
+}; 
+class stack
+{public:
+ node* top;
+        stack()
+		{
+		 top=NULL;
+		}	
+		
+		int pop()
+		{int t;
+		node* temp=top;
+		top=top->next;
+		t=temp->data;
+		cout<<temp->data<<":deleted"<<endl;
+		delete temp;
+		return t;
+		}
+		
+		void push(int k)
+		{
+		 node* temp=new node;
+		 temp->data=k;
+		 if(top!=NULL)
+		 {
+		 temp->next=top;
+		 top=temp;
+		 }
+		 else
+		 {
+		  top=temp;
+		  top->next=NULL;
+		 }
+		}
+		
+		void display()
+		{
+		 node* temp=top;
+		 
+		 while(temp!=NULL)
+		 {
+		  cout<<temp->data<<" ";
+		  temp=temp->next;
+		 }
+		 cout<<endl;
+		}
 };
+
 
 class queue
 {
- stackArr s,s1;
+ stack s,s1;
 public:
        void enqueue(int value)
       { int t;
-       while(s.top!=-1)
+       while(s.top!=NULL)
        { 
         s1.push(s.pop());
        }
         s.push(value);
-         while(s1.top!=-1)
+         while(s1.top!=NULL)
        {
         s.push(s1.pop());
        }
@@ -72,7 +81,7 @@ public:
         s.display();
       }
       void dequeue()
-      {if(s.top!=-1)
+      {if(s.top!=NULL)
        cout<<"Deleting:"<<s.pop();
        else
        cout<<"Queue underflow"<<endl;
