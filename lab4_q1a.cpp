@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std; 
 
-// A linked list (LL) node to store a queue entry 
+// A linked list (LL) node to store a stack entry 
 class node 
 { 
     public:
@@ -21,7 +21,7 @@ class stack
 		{
 		 top=NULL;
 		}	
-		
+		// remove the top most element
 		void pop()
 		{
 		node* temp=top;
@@ -29,23 +29,24 @@ class stack
 		cout<<temp->data<<":deleted"<<endl;
 		delete temp;
 		}
-		
+		// adds the new element 
 		void push(int k)
 		{
 		 node* temp=new node;
 		 temp->data=k;
+			// check if the stack is empty
 		 if(top!=NULL)
-		 {
+		 {// if not add new element as top
 		 temp->next=top;
 		 top=temp;
 		 }
 		 else
-		 {
+		 {//else add new element as temp
 		  top=temp;
 		  top->next=NULL;
 		 }
 		}
-		
+		//displays the stack elements
 		void display()
 		{
 		 node* temp=top;
