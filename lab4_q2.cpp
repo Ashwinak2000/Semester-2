@@ -1,6 +1,7 @@
 #include<iostream>
 using namespace std;
 
+//implements a queue from a stack
 class stackArr
 { public:
  int stack[10];
