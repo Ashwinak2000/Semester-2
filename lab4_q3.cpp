@@ -1,6 +1,7 @@
 #include<iostream>
 using namespace std;
 
+//Converts a queue into a stack array 
 class QueueArr
 {
  int queue[100];
