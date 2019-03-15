@@ -43,7 +43,7 @@ class tree
 		 }
 	
 	void insert(int data)
-	{
+	{//call insert1
 	 insert1(root,data);
 	}
 		 
@@ -90,43 +90,44 @@ class tree
 		}
 	
 	node* search(int data)
-	{
+	{//call search
 	 return search1(data,root);
 	}
 	
 	node* search1(int data,node* cur)
-	{
+	{//see if the node is empty
 	 if(cur!=NULL)	
-	 {
+	 { //if not check if its data is more than data
 	   if(data>cur->data)
-	   {
+	   {//call search1 of the right link
 	    search1(data,cur->rnext);
        }
-	   else if(data<cur->data)
-	   {
+	   else if(data=<cur->data)
+	   {//call the left link
 	    search1(data,cur->lnext);
        }
 	   else
-	   {
+	   {//else display success
 	   	cout<<"Element found";
 	   	return cur;
 	   }
 	 }
 	 else
-	 {
+	 {//display error
 	  cout<<"Element not found";
 	  return NULL;
      }
     }
     
     void display()
-    {
+    {//call display2
      display2(root);
     }	
     void display2(node* cur)
-    {
+    {//check if current is null then return
      if(cur==NULL)
      return;
+	    //else display the left and right nodes.
      display2(cur->lnext);
      cout<<cur->data<<",";
      display2(cur->rnext);
