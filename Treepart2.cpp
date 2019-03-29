@@ -153,7 +153,7 @@ void replace_at_parent(node* cur,node* temp)
 }
 
 void delNode(int value)
-{
+{//find the node and check if it has 1,2 or no children
  node* cur=search(value);
  if(cur!=NULL)
  {
@@ -188,16 +188,16 @@ return current;
 
 void delnode(node* temp,int child)
 {if(temp!=root)
-{
+{//if the element is not the root
 
  if(child==0)
-{
+{//if it is a leaf replace it at its parent
  replace_at_parent(temp,NULL);
  delete temp;
  temp=NULL;
 }
  if(child==1)
-{
+{// if it has one child replace it with its child
  if(temp->lnext!=NULL)
  {
   replace_at_parent(temp,temp->lnext);
@@ -210,21 +210,21 @@ void delnode(node* temp,int child)
  temp=NULL;
 }
  if(child==2)
-{
+{// if it has two children replace the node with the smallest numbered element on its right and delete that node
   node* temp1=find_min(temp->rnext);
   temp->data=temp1->data;
   delnode(temp->rnext,temp1->data); 
 }
 }
 else
-{
+{// if it is root 
 if(child==0)
-{
+{//if it is a leaf replace it at its parent
  delete temp;
  root=temp=NULL;
 }
  if(child==1)
-{
+{// if it has one child replace it with its child
  if(temp->lnext!=NULL)
  {
   temp=temp->lnext;
@@ -237,7 +237,7 @@ if(child==0)
  }
 }
  if(child==2)
- {
+ {// if it has two children replace the node with the smallest numbered element on its right and delete that node
   node* temp1=find_min(temp->rnext);
   temp->data=temp1->data;
   delnode(temp->rnext,temp1->data);
