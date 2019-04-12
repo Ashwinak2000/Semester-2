@@ -114,17 +114,30 @@ void Heapify(int i)
         Heapify(smallest); 
     } 
 }
+void display()
+{
+ for(int i=0;i<csize;i++)
+ cout<<bhArr[i];
+ cout<<endl;
+}
 };
 int main()
 {
-heap h(19); 
-h.insert(3); 
+heap h(10); 
+h.insert(3);
+h.display();
 h.insert(2); 
-h.deleteKey(12); 
-h.insert(15); 
-h.insert(5); 
-h.insert(34); 
-h.insert(4); 
+h.display();
+h.deleteKey(12);
+h.display();
+h.insert(15);
+h.display();
+h.insert(5);
+h.display();
+h.insert(34);
+h.display();
+h.insert(4);
+h.display();
 cout << h.extractMin() << " "; 
 cout << h.getMin() << " "; 
 h.decreaseKey(2,1); 
