@@ -87,10 +87,14 @@ void decreaseKey(int i, int new_val)
     } 
 } 
 void deleteKey(int i) 
-{ //decrease key of the needed element and extract min
+{ if(i<csize)
+ {//decrease key of the needed element and extract min
     decreaseKey(i, INT_MIN); 
     extractMin(); 
-} 
+ }
+ else
+ cout<<"No such element exists"<<endl;
+}
 void Heapify(int i)
 {   int temp;
     int l = left(i); 
